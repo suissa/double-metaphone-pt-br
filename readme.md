@@ -124,7 +124,8 @@ $ echo 'cidade coração' | double-metaphone
 ## Datasets
 
 The repository includes two curated datasets for evaluating Portuguese fuzzy
-matching behavior:
+matching behavior.  For a detailed explanation of the implemented phonetic
+rules, see [Fonética em português brasileiro](FONETICA-pt-br.md).
 
 *   [`datasets/transcription-errors.json`](datasets/transcription-errors.json)
     contains 50 likely audio transcription mistakes or consonant swaps that the

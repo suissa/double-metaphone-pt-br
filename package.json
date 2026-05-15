@@ -31,7 +31,8 @@
     "index.d.ts",
     "index.js",
     "cli.js",
-    "datasets"
+    "datasets",
+    "FONETICA-pt-br.md"
   ],
   "devDependencies": {
     "@types/node": "^18.0.0",
