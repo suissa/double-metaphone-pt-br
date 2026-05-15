@@ -51,16 +51,16 @@ function help() {
       'Usage:',
       '',
       '# output phonetics',
-      '$ ' + pack.name + ' michael',
-      '# ' + phonetics('michael'),
+      '$ ' + pack.name + ' coração',
+      '# ' + phonetics('coração'),
       '',
       '# output phonetics from stdin',
-      "$ echo 'Xavier' | " + pack.name,
-      '# ' + phonetics('Xavier'),
+      "$ echo 'queijo' | " + pack.name,
+      '# ' + phonetics('queijo'),
       '',
-      '# with stemmer',
-      "$ echo 'acceptingness' | stemmer | " + pack.name,
-      '# ' + phonetics('accepting')
+      '# multiple Portuguese words',
+      "$ echo 'cidade coração' | " + pack.name,
+      '# ' + phonetics('cidade coração')
     ].join('\n  ') + '\n'
   )
 }

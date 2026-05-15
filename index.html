@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fonética pt-BR em busca híbrida</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f3ec;
+        --card: #fffaf2;
+        --fg: #1f2933;
+        --muted: #5f6c7b;
+        --accent: #0f766e;
+        --accent-weak: #ccfbf1;
+        --border: #dfd7c8;
+        --code: #172554;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101820;
+          --card: #15212c;
+          --fg: #edf2f7;
+          --muted: #bdc8d5;
+          --accent: #5eead4;
+          --accent-weak: #134e4a;
+          --border: #2d3d4d;
+          --code: #bfdbfe;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 48px 0 72px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 6vw, 4.8rem);
+        letter-spacing: -0.06em;
+      }
+
+      h2 {
+        margin-top: 56px;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+      }
+
+      h3 {
+        margin-top: 28px;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      code,
+      pre {
+        color: var(--code);
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo,
+          monospace;
+      }
+
+      pre {
+        overflow-x: auto;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--card) 76%, var(--accent-weak));
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--accent-weak);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .card {
+        padding: 26px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--card);
+        box-shadow: 0 20px 60px rgb(15 23 42 / 8%);
+      }
+
+      .lead {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.2rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--accent-weak);
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .step {
+        position: relative;
+      }
+
+      .step strong {
+        display: block;
+        color: var(--accent);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .callout {
+        border-left: 5px solid var(--accent);
+      }
+
+      .score {
+        display: inline-block;
+        min-width: 5ch;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: var(--accent-weak);
+        color: var(--accent);
+        font-weight: 700;
+        text-align: center;
+      }
+
+      @media (max-width: 820px) {
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="card">
+          <span class="badge">Fonética pt-BR + busca híbrida</span>
+          <h1>
+            Como usar códigos fonéticos para cobrir mais cenários de busca
+          </h1>
+          <p class="lead">
+            Esta página explica, de forma prática, onde a fonética entra em uma
+            busca por similaridade semântica. Ela não “adivinha” sozinha a
+            palavra correta: ela cria uma chave de som para recuperar candidatos
+            que embeddings, busca textual ou distância de edição podem deixar
+            escapar.
+          </p>
+        </div>
+
+        <aside class="card callout">
+          <h2>Resposta curta</h2>
+          <p>
+            Sim, você pode usar a fonética para transformar uma palavra escrita
+            errada em <em>candidatas</em> prováveis de palavra correta.
+          </p>
+          <p>
+            O fluxo recomendado é: gerar código fonético da consulta, buscar
+            palavras/documentos com código parecido, combinar com busca textual
+            e semântica, e só então ranquear os melhores resultados.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Por que aqueles testes existem?</h2>
+        <p>
+          Os testes abaixo não tentam dizer que essas palavras são iguais. Eles
+          documentam decisões de pronúncia úteis para busca. Cada expectativa
+          mostra como uma palavra vira um par de códigos: um primário e um
+          secundário.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Teste</th>
+              <th>O que está sendo coberto</th>
+              <th>Como isso ajuda na busca</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>m('Brasil') =&gt; ['PRZU', 'PRSL']</code></td>
+              <td>
+                <code>B</code> aproxima de <code>P</code>, <code>s</code> entre
+                vogais pode soar como <code>z</code>, e <code>l</code> final
+                pode soar como <code>u</code> no Brasil.
+              </td>
+              <td>
+                Ajuda a aproximar variações de fala, sotaque e transcrição como
+                “Braz...”/“Bras...” ou final “...il”/“...iu”.
+              </td>
+            </tr>
+            <tr>
+              <td><code>m('bom') =&gt; ['P', 'P']</code></td>
+              <td>
+                <code>B</code> converge para <code>P</code> e
+                <code>m</code> final após vogal marca nasalização, sem criar uma
+                consoante forte no fim.
+              </td>
+              <td>
+                Evita que “bom”, “bon” e transcrições nasais próximas fiquem
+                excessivamente distantes.
+              </td>
+            </tr>
+            <tr>
+              <td><code>m('hífen') =&gt; ['AF', 'AF']</code></td>
+              <td>
+                <code>H</code> inicial é mudo, acento é normalizado, e
+                <code>n</code> final após vogal é tratado como nasalização.
+              </td>
+              <td>
+                Permite recuperar termos mesmo quando o usuário escreve sem
+                acento ou quando o áudio não preserva o <code>h</code> gráfico.
+              </td>
+            </tr>
+            <tr>
+              <td><code>m('show') =&gt; ['XU', 'XV']</code></td>
+              <td>
+                <code>sh</code> é aproximado para som de <code>x</code> e
+                <code>w</code> final pode receber leitura vocálica/semivocálica.
+              </td>
+              <td>
+                Cobre estrangeirismos comuns em português brasileiro, como
+                “show”, que usuários podem transcrever pelo som.
+              </td>
+            </tr>
+            <tr>
+              <td><code>m('yamaha') =&gt; ['IM', 'IM']</code></td>
+              <td>
+                <code>y</code> próximo de vogal vira som de <code>i</code> e
+                <code>h</code> interno é ignorado.
+              </td>
+              <td>
+                Ajuda nomes de marca ou nomes próprios estrangeiros que entram
+                em uma busca em português.
+              </td>
+            </tr>
+            <tr>
+              <td><code>m('toy') =&gt; ['TI', 'TI']</code></td>
+              <td>
+                <code>y</code> final depois de vogal recebe leitura de
+                <code>i</code>.
+              </td>
+              <td>
+                Ajuda quando um termo estrangeiro curto aparece em catálogo,
+                produto ou transcrição de fala.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Onde a fonética entra em uma busca semântica híbrida?</h2>
+        <p>
+          Em uma busca híbrida, você normalmente combina sinais diferentes. A
+          fonética é mais um sinal, focado em erro de escrita, som parecido,
+          transcrição de áudio e troca de consoantes. Ela complementa, mas não
+          substitui, embeddings ou busca textual.
+        </p>
+
+        <div class="grid">
+          <article class="card step">
+            <strong>1. Léxico</strong>
+            <h3>BM25 / texto exato</h3>
+            <p>
+              Encontra documentos que contêm a palavra ou tokens próximos à
+              consulta. É forte para nomes, códigos e termos exatos.
+            </p>
+          </article>
+          <article class="card step">
+            <strong>2. Semântico</strong>
+            <h3>Embeddings</h3>
+            <p>
+              Encontra conteúdo com significado parecido, mesmo usando palavras
+              diferentes, como “remédio” e “medicamento”.
+            </p>
+          </article>
+          <article class="card step">
+            <strong>3. Fonético</strong>
+            <h3>Código de som</h3>
+            <p>
+              Encontra candidatos quando o usuário escreveu pelo som, como
+              <code>xave</code> para <code>chave</code> ou
+              <code>ezame</code> para <code>exame</code>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Exemplo de pipeline</h2>
+        <p>
+          Imagine que sua base tem a palavra correta <code>exame</code>, mas o
+          usuário digitou <code>ezame</code> ou o áudio foi transcrito dessa
+          forma.
+        </p>
+
+        <pre><code>import {doubleMetaphone} from 'double-metaphone'
+
+const query = 'ezame'
+const queryCodes = doubleMetaphone(query) // ['AZM', 'AZM']
+
+// No índice, a palavra correta também guarda códigos fonéticos.
+const indexedTerm = {
+  text: 'exame',
+  phonetic: doubleMetaphone('exame') // ['AZM', 'ASM']
+}
+
+const phoneticMatch = indexedTerm.phonetic.some(function (code) {
+  return queryCodes.includes(code)
+})
+
+console.log(phoneticMatch) // true</code></pre>
+
+        <p>
+          Depois desse match fonético, você não precisa aceitar automaticamente
+          que <code>ezame</code> significa <code>exame</code>. O ideal é usar o
+          match para adicionar candidatos ao ranking final.
+        </p>
+      </section>
+
+      <section>
+        <h2>Como ranquear os candidatos</h2>
+        <p>
+          Uma forma simples é combinar pontuações. Os pesos dependem do seu
+          domínio, mas a ideia é esta:
+        </p>
+
+        <pre><code>scoreFinal =
+  0.45 * scoreSemantico +
+  0.30 * scoreTextual +
+  0.15 * scoreFonetico +
+  0.10 * scoreEdicao</code></pre>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Sinal</th>
+              <th>Quando é forte</th>
+              <th>Exemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="score">0.45</span> Semântico</td>
+              <td>Quando o significado é parecido.</td>
+              <td>“atestado médico” encontra “documento de saúde”.</td>
+            </tr>
+            <tr>
+              <td><span class="score">0.30</span> Textual</td>
+              <td>Quando a palavra aparece de forma literal.</td>
+              <td>“boleto vencido” encontra documentos com esses termos.</td>
+            </tr>
+            <tr>
+              <td><span class="score">0.15</span> Fonético</td>
+              <td>Quando a escrita está errada, mas o som é parecido.</td>
+              <td>“xave” encontra “chave”; “ezame” encontra “exame”.</td>
+            </tr>
+            <tr>
+              <td><span class="score">0.10</span> Edição</td>
+              <td>Quando há poucas inserções, remoções ou trocas de letras.</td>
+              <td>“relatorio” encontra “relatório”.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Isso converte palavra errada em correta?</h2>
+        <p>
+          Não diretamente. O algoritmo fonético não é um corretor ortográfico e
+          não conhece o vocabulário da sua aplicação. Ele responde uma pergunta
+          mais simples: “essa escrita soa parecida com outra?”.
+        </p>
+
+        <p>Para converter uma palavra errada em uma correta, use este fluxo:</p>
+
+        <ol>
+          <li>monte um dicionário com termos válidos do seu domínio;</li>
+          <li>salve os códigos fonéticos de cada termo;</li>
+          <li>gere os códigos fonéticos da consulta;</li>
+          <li>busque candidatos que compartilhem algum código;</li>
+          <li>
+            ranqueie por fonética, distância de edição, frequência e contexto;
+          </li>
+          <li>
+            retorne a melhor sugestão ou mostre uma lista de alternativas.
+          </li>
+        </ol>
+
+        <pre><code>// Consulta digitada ou vinda de áudio:
+'xave'
+
+// Candidatos por fonética:
+['chave', 'chaves', 'enxave']
+
+// Ranking final escolhe:
+'chave'</code></pre>
+      </section>
+
+      <section>
+        <h2>Exemplos de cenários cobertos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Consulta com erro</th>
+              <th>Candidato correto</th>
+              <th>Por que a fonética ajuda</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>xave</code></td>
+              <td><code>chave</code></td>
+              <td>
+                <code>x</code> e <code>ch</code> podem representar o mesmo som.
+              </td>
+            </tr>
+            <tr>
+              <td><code>ezame</code></td>
+              <td><code>exame</code></td>
+              <td>
+                <code>x</code> intervocálico pode soar como <code>z</code>.
+              </td>
+            </tr>
+            <tr>
+              <td><code>orario</code></td>
+              <td><code>horário</code></td>
+              <td><code>h</code> é mudo e acentos são normalizados.</td>
+            </tr>
+            <tr>
+              <td><code>mensajen</code></td>
+              <td><code>mensagem</code></td>
+              <td>
+                Final nasal pode aparecer como <code>m</code> ou <code>n</code>.
+              </td>
+            </tr>
+            <tr>
+              <td><code>facina</code></td>
+              <td><code>vacina</code></td>
+              <td><code>f</code> e <code>v</code> são consoantes próximas.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card callout">
+        <h2>Regra prática</h2>
+        <p>
+          Use fonética para aumentar recall: trazer mais candidatos que talvez
+          estejam escritos errado. Use semântica, texto e distância de edição
+          para aumentar precisão: escolher quais desses candidatos realmente
+          fazem sentido para o usuário.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
