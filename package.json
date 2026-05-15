@@ -1,12 +1,12 @@
 {
   "name": "double-metaphone",
   "version": "2.0.1",
-  "description": "Double Metaphone algorithm",
+  "description": "Portuguese phonetic analysis",
   "license": "MIT",
   "keywords": [
-    "lawrence",
-    "philips",
-    "double",
+    "portuguese",
+    "brazilian",
+    "phonetic",
     "metaphone",
     "cli",
     "bin"
@@ -30,7 +30,8 @@
   "files": [
     "index.d.ts",
     "index.js",
-    "cli.js"
+    "cli.js",
+    "datasets"
   ],
   "devDependencies": {
     "@types/node": "^18.0.0",

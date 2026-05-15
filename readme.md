@@ -5,7 +5,7 @@
 [![Downloads][downloads-badge]][downloads]
 [![Size][size-badge]][size]
 
-[Double metaphone algorithm][source].
+[Double-Metaphone-inspired phonetic analysis for Brazilian Portuguese][source].
 
 ## Contents
 
@@ -16,6 +16,7 @@
 *   [API](#api)
     *   [`doubleMetaphone(value)`](#doublemetaphonevalue)
 *   [CLI](#cli)
+*   [Datasets](#datasets)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Related](#related)
@@ -25,18 +26,20 @@
 
 ## What is this?
 
-This package exposes a phonetic algorithm.
-That means it gets a certain string (typically an English word), and turns it
-into codes, which can then be compared to other codes (of other words), to
-check if they are (likely) pronounced the same.
+This package exposes a phonetic algorithm adapted for Brazilian Portuguese.
+That means it gets a certain string (typically a Portuguese word), normalizes
+Portuguese diacritics and common digraphs, and turns it into codes that can be
+compared to other codes to check if they are likely pronounced the same.
 
 ## When should I use this?
 
 You’re probably dealing with natural language, and know you need this, if
 you’re here!
 
-Depending on your goals, you likely want to additionally use a stemmer (such as
-[`stemmer`][stemmer]).
+Use it when you need fuzzy matching, deduplication, or search keys for names and
+terms written in Portuguese.  The encoder handles cases such as `ç`, `ch`, `lh`,
+`nh`, soft `c`/`g`, common values of `x`, final nasal markers, and common
+Brazilian palatalization of `d` and `t`.
 
 ## Install
 
@@ -66,23 +69,12 @@ In browsers with [`esm.sh`][esmsh]:
 ```js
 import {doubleMetaphone} from 'double-metaphone'
 
-doubleMetaphone('michael') // => ['MKL', 'MXL']
-doubleMetaphone('crevalle') // => ['KRFL', 'KRF']
-doubleMetaphone('Filipowitz') // => ['FLPTS', 'FLPFX']
-doubleMetaphone('Xavier') // => ['SF', 'SFR']
-doubleMetaphone('delicious') // => ['TLSS', 'TLXS']
-doubleMetaphone('acceptingness') // => ['AKSPTNNS', 'AKSPTNKNS']
-doubleMetaphone('allegrettos') // => ['ALKRTS', 'AKRTS']
-```
-
-With [`stemmer`][stemmer]:
-
-```js
-import {doubleMetaphone} from 'double-metaphone'
-import {stemmer} from 'stemmer'
-
-doubleMetaphone(stemmer('acceptingness')) // => ['AKSPTNK', 'AKSPTNK']
-doubleMetaphone(stemmer('allegrettos')) // => ['ALKRT', 'AKRT']
+doubleMetaphone('coração') // => ['KRS', 'KRS']
+doubleMetaphone('queijo') // => ['KJ', 'KJ']
+doubleMetaphone('cidade') // => ['STJ', 'STT']
+doubleMetaphone('chave') // => ['XF', 'XF']
+doubleMetaphone('exame') // => ['AZM', 'ASM']
+doubleMetaphone('Brasil') // => ['PRZU', 'PRSL']
 ```
 
 ## API
@@ -92,7 +84,7 @@ There is no default export.
 
 ### `doubleMetaphone(value)`
 
-Get the double metaphone codes from a given value.
+Get the Portuguese phonetic codes from a given value.
 
 ###### `value`
 
@@ -100,14 +92,14 @@ Value to use (`string`, required).
 
 ##### Returns
 
-Double metaphone codes for `value` (`[string, string]`).
+Portuguese phonetic codes for `value` (`[string, string]`).
 
 ## CLI
 
 ```txt
 Usage: double-metaphone [options] <words...>
 
-Double Metaphone algorithm
+Portuguese phonetic analysis
 
 Options:
 
@@ -117,17 +109,30 @@ Options:
 Usage:
 
 # output phonetics
-$ double-metaphone michael
-# MKL MXL
+$ double-metaphone coração
+# KRS KRS
 
 # output phonetics from stdin
-$ echo 'Xavier' | double-metaphone
-# SF  SFR
+$ echo 'queijo' | double-metaphone
+# KJ  KJ
 
-# with stemmer
-$ echo 'acceptingness' | stemmer | double-metaphone
-# AKSPTNK AKSPTNK
+# multiple Portuguese words
+$ echo 'cidade coração' | double-metaphone
+# STJ STT KRS KRS
 ```
+
+## Datasets
+
+The repository includes two curated datasets for evaluating Portuguese fuzzy
+matching behavior:
+
+*   [`datasets/transcription-errors.json`](datasets/transcription-errors.json)
+    contains 50 likely audio transcription mistakes or consonant swaps that the
+    current encoder can match by at least one generated code.
+*   [`datasets/algorithm-misses.json`](datasets/algorithm-misses.json) contains
+    misspelled words that currently do not share any generated code with the
+    intended word.  Use this dataset as a false-negative backlog for future
+    algorithm improvements.
 
 ## Types
 
@@ -201,5 +206,3 @@ This package is safe.
 [author]: https://wooorm.com
 
 [source]: https://en.wikipedia.org/wiki/metaphone
-
-[stemmer]: https://github.com/words/stemmer
