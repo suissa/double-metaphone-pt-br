@@ -1,12 +1,12 @@
 {
   "name": "double-metaphone",
   "version": "2.0.1",
-  "description": "Double Metaphone algorithm",
+  "description": "Portuguese phonetic analysis",
   "license": "MIT",
   "keywords": [
-    "lawrence",
-    "philips",
-    "double",
+    "portuguese",
+    "brazilian",
+    "phonetic",
     "metaphone",
     "cli",
     "bin"
