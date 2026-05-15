@@ -16,6 +16,7 @@
 *   [API](#api)
     *   [`doubleMetaphone(value)`](#doublemetaphonevalue)
 *   [CLI](#cli)
+*   [Datasets](#datasets)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Related](#related)
@@ -119,6 +120,19 @@ $ echo 'queijo' | double-metaphone
 $ echo 'cidade coração' | double-metaphone
 # STJ STT KRS KRS
 ```
+
+## Datasets
+
+The repository includes two curated datasets for evaluating Portuguese fuzzy
+matching behavior:
+
+*   [`datasets/transcription-errors.json`](datasets/transcription-errors.json)
+    contains 50 likely audio transcription mistakes or consonant swaps that the
+    current encoder can match by at least one generated code.
+*   [`datasets/algorithm-misses.json`](datasets/algorithm-misses.json) contains
+    misspelled words that currently do not share any generated code with the
+    intended word.  Use this dataset as a false-negative backlog for future
+    algorithm improvements.
 
 ## Types
 

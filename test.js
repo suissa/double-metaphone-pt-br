@@ -14,6 +14,43 @@ const pack = JSON.parse(
   String(fs.readFileSync(new URL('package.json', import.meta.url)))
 )
 
+const transcriptionErrors = readDataset('datasets/transcription-errors.json')
+const algorithmMisses = readDataset('datasets/algorithm-misses.json')
+
+/**
+ * @typedef DatasetEntry
+ * @property {string} correct
+ * @property {string} variant
+ * @property {string | undefined} [category]
+ * @property {string | undefined} [reason]
+ * @property {[string, string] | undefined} [correctCodes]
+ * @property {[string, string] | undefined} [variantCodes]
+ */
+
+/**
+ * @param {string} path
+ *   Dataset path.
+ * @returns {Array<DatasetEntry>}
+ *   Dataset entries.
+ */
+function readDataset(path) {
+  return JSON.parse(String(fs.readFileSync(new URL(path, import.meta.url))))
+}
+
+/**
+ * @param {[string, string]} left
+ *   Left phonetic codes.
+ * @param {[string, string]} right
+ *   Right phonetic codes.
+ * @returns {boolean}
+ *   Whether at least one code is shared.
+ */
+function hasSharedCode(left, right) {
+  return left.some(function (code) {
+    return right.includes(code)
+  })
+}
+
 test('api: análise fonética para português brasileiro', async function (t) {
   assert.equal(typeof m, 'function', 'should be a `function`')
   assert.deepEqual(m(''), ['', ''], 'should support empty input')
@@ -150,5 +187,48 @@ test('cli', async function () {
     await exec('./cli.js --version'),
     {stdout: pack.version + '\n', stderr: ''},
     '--version'
+  )
+})
+
+test('datasets', async function (t) {
+  await t.test(
+    'transcription errors contains 50 findable variants',
+    function () {
+      assert.equal(transcriptionErrors.length, 50)
+
+      /** @type {Set<string>} */
+      const seen = new Set()
+
+      for (const entry of transcriptionErrors) {
+        assert.equal(typeof entry.correct, 'string')
+        assert.equal(typeof entry.variant, 'string')
+        assert.equal(typeof entry.category, 'string')
+        assert.ok(!seen.has(entry.correct + '\0' + entry.variant))
+        seen.add(entry.correct + '\0' + entry.variant)
+        assert.ok(hasSharedCode(m(entry.correct), m(entry.variant)))
+      }
+    }
+  )
+
+  await t.test(
+    'algorithm misses documents current false negatives',
+    function () {
+      assert.equal(algorithmMisses.length, 32)
+
+      /** @type {Set<string>} */
+      const seen = new Set()
+
+      for (const entry of algorithmMisses) {
+        const correctCodes = m(entry.correct)
+        const variantCodes = m(entry.variant)
+
+        assert.equal(typeof entry.reason, 'string')
+        assert.deepEqual(entry.correctCodes, correctCodes)
+        assert.deepEqual(entry.variantCodes, variantCodes)
+        assert.ok(!seen.has(entry.correct + '\0' + entry.variant))
+        seen.add(entry.correct + '\0' + entry.variant)
+        assert.equal(hasSharedCode(correctCodes, variantCodes), false)
+      }
+    }
   )
 })

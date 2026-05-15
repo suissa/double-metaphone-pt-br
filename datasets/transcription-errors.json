@@ -1,0 +1,252 @@
+[
+  {
+    "correct": "advogado",
+    "variant": "adevogado",
+    "category": "inserção vocálica"
+  },
+  {
+    "correct": "advogado",
+    "variant": "adivogado",
+    "category": "troca vocálica"
+  },
+  {
+    "correct": "amanhã",
+    "variant": "amanha",
+    "category": "perda de acento"
+  },
+  {
+    "correct": "ambulância",
+    "variant": "ambulansea",
+    "category": "transcrição de som /sia/"
+  },
+  {
+    "correct": "análise",
+    "variant": "analize",
+    "category": "s por z"
+  },
+  {
+    "correct": "análise",
+    "variant": "analise",
+    "category": "perda de acento"
+  },
+  {
+    "correct": "anexo",
+    "variant": "anesso",
+    "category": "x por ss"
+  },
+  {
+    "correct": "aqui",
+    "variant": "aki",
+    "category": "qu por k"
+  },
+  {
+    "correct": "atendimento",
+    "variant": "atendimentu",
+    "category": "vogal final"
+  },
+  {
+    "correct": "audiência",
+    "variant": "audiencia",
+    "category": "perda de acento"
+  },
+  {
+    "correct": "bairro",
+    "variant": "bairo",
+    "category": "simplificação de r"
+  },
+  {
+    "correct": "banheiro",
+    "variant": "banhero",
+    "category": "perda de i em nh"
+  },
+  {
+    "correct": "benefício",
+    "variant": "benefisio",
+    "category": "c por s"
+  },
+  {
+    "correct": "brasileiro",
+    "variant": "brazileiro",
+    "category": "s por z"
+  },
+  {
+    "correct": "cabeça",
+    "variant": "cabesa",
+    "category": "ç por s"
+  },
+  {
+    "correct": "campanha",
+    "variant": "campana",
+    "category": "perda de nh"
+  },
+  {
+    "correct": "cancelamento",
+    "variant": "canselamento",
+    "category": "c por s"
+  },
+  {
+    "correct": "certidão",
+    "variant": "sertidao",
+    "category": "c por s e acento"
+  },
+  {
+    "correct": "chave",
+    "variant": "xave",
+    "category": "ch por x"
+  },
+  {
+    "correct": "cheque",
+    "variant": "xeque",
+    "category": "ch por x"
+  },
+  {
+    "correct": "cobrança",
+    "variant": "cobransa",
+    "category": "ç por s"
+  },
+  {
+    "correct": "comprovante",
+    "variant": "compruvante",
+    "category": "vogal o por u"
+  },
+  {
+    "correct": "correção",
+    "variant": "coresao",
+    "category": "rr simplificado e ç por s"
+  },
+  {
+    "correct": "crédito",
+    "variant": "credtio",
+    "category": "metátese vocálica"
+  },
+  {
+    "correct": "endereço",
+    "variant": "enderesso",
+    "category": "ç por ss"
+  },
+  {
+    "correct": "energia",
+    "variant": "enerjia",
+    "category": "g por j"
+  },
+  {
+    "correct": "escola",
+    "variant": "iscola",
+    "category": "e inicial por i"
+  },
+  {
+    "correct": "exame",
+    "variant": "ezame",
+    "category": "x por z"
+  },
+  {
+    "correct": "financeiro",
+    "variant": "finanseiro",
+    "category": "c por s"
+  },
+  {
+    "correct": "funcionário",
+    "variant": "funsionario",
+    "category": "c por s"
+  },
+  {
+    "correct": "garagem",
+    "variant": "garaje",
+    "category": "g final por j"
+  },
+  {
+    "correct": "gerente",
+    "variant": "jerente",
+    "category": "g por j"
+  },
+  {
+    "correct": "horário",
+    "variant": "orario",
+    "category": "h mudo e acento"
+  },
+  {
+    "correct": "impressão",
+    "variant": "impreção",
+    "category": "ss por ç"
+  },
+  {
+    "correct": "julho",
+    "variant": "julo",
+    "category": "perda de lh"
+  },
+  {
+    "correct": "ligação",
+    "variant": "ligasao",
+    "category": "ç por s"
+  },
+  {
+    "correct": "manutenção",
+    "variant": "manutensao",
+    "category": "ç por s"
+  },
+  {
+    "correct": "mensagem",
+    "variant": "mensajen",
+    "category": "m final por n"
+  },
+  {
+    "correct": "protocolo",
+    "variant": "brotocolo",
+    "category": "p por b"
+  },
+  {
+    "correct": "recepção",
+    "variant": "resepção",
+    "category": "c por s"
+  },
+  {
+    "correct": "relatório",
+    "variant": "relatorio",
+    "category": "perda de acento"
+  },
+  {
+    "correct": "senha",
+    "variant": "senia",
+    "category": "nh por ni"
+  },
+  {
+    "correct": "telefone",
+    "variant": "telefoni",
+    "category": "e final por i"
+  },
+  {
+    "correct": "trabalho",
+    "variant": "trabalo",
+    "category": "perda de lh"
+  },
+  {
+    "correct": "urgência",
+    "variant": "urjencia",
+    "category": "g por j"
+  },
+  {
+    "correct": "usuário",
+    "variant": "uzuario",
+    "category": "s por z"
+  },
+  {
+    "correct": "vacina",
+    "variant": "facina",
+    "category": "v por f"
+  },
+  {
+    "correct": "xícara",
+    "variant": "chicara",
+    "category": "x por ch"
+  },
+  {
+    "correct": "desenho",
+    "variant": "desenio",
+    "category": "nh por ni"
+  },
+  {
+    "correct": "cozinha",
+    "variant": "cosinha",
+    "category": "z por s"
+  }
+]
