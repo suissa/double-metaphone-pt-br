@@ -1,0 +1,226 @@
+[
+  {
+    "correct": "abacaxi",
+    "variant": "abacachi",
+    "correctCodes": ["APKKS", "APKKS"],
+    "variantCodes": ["APKX", "APKX"],
+    "reason": "x medial transcrito como ch"
+  },
+  {
+    "correct": "abacaxi",
+    "variant": "abacaji",
+    "correctCodes": ["APKKS", "APKKS"],
+    "variantCodes": ["APKJ", "APKJ"],
+    "reason": "x medial transcrito como j"
+  },
+  {
+    "correct": "algoritmo",
+    "variant": "augoritmo",
+    "correctCodes": ["ALKRTM", "ALKRTM"],
+    "variantCodes": ["AKRTM", "AKRTM"],
+    "reason": "l vocalizado como u"
+  },
+  {
+    "correct": "arquivo",
+    "variant": "arquibo",
+    "correctCodes": ["ARKF", "ARKF"],
+    "variantCodes": ["ARKP", "ARKP"],
+    "reason": "v transcrito como b"
+  },
+  {
+    "correct": "atendimento",
+    "variant": "atendimemto",
+    "correctCodes": ["ATNJMNT", "ATNTMNT"],
+    "variantCodes": ["ATNJMMT", "ATNTMMT"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "autorização",
+    "variant": "altorizacao",
+    "correctCodes": ["ATRZS", "ATRZS"],
+    "variantCodes": ["ALTRZK", "ALTRZK"],
+    "reason": "u transcrito como l"
+  },
+  {
+    "correct": "biblioteca",
+    "variant": "bibioteca",
+    "correctCodes": ["PPLTK", "PPLTK"],
+    "variantCodes": ["PPTK", "PPTK"],
+    "reason": "perda de l"
+  },
+  {
+    "correct": "cachorro",
+    "variant": "caxorro",
+    "correctCodes": ["KXR", "KXR"],
+    "variantCodes": ["KKSR", "KKSR"],
+    "reason": "ch transcrito como x"
+  },
+  {
+    "correct": "caixa",
+    "variant": "cacha",
+    "correctCodes": ["KKS", "KKS"],
+    "variantCodes": ["KX", "KX"],
+    "reason": "x transcrito como ch"
+  },
+  {
+    "correct": "calendário",
+    "variant": "calemdario",
+    "correctCodes": ["KLNTR", "KLNTR"],
+    "variantCodes": ["KLMTR", "KLMTR"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "carteira",
+    "variant": "cartela",
+    "correctCodes": ["KRTR", "KRTR"],
+    "variantCodes": ["KRTL", "KRTL"],
+    "reason": "r transcrito como l"
+  },
+  {
+    "correct": "conexão",
+    "variant": "coneccao",
+    "correctCodes": ["KNZ", "KNS"],
+    "variantCodes": ["KNK", "KNK"],
+    "reason": "x transcrito como cc"
+  },
+  {
+    "correct": "consulta",
+    "variant": "comsulta",
+    "correctCodes": ["KNSLT", "KNSLT"],
+    "variantCodes": ["KMSLT", "KMSLT"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "contrato",
+    "variant": "comtrato",
+    "correctCodes": ["KNTRT", "KNTRT"],
+    "variantCodes": ["KMTRT", "KMTRT"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "convênio",
+    "variant": "comvenio",
+    "correctCodes": ["KNFN", "KNFN"],
+    "variantCodes": ["KMFN", "KMFN"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "documento",
+    "variant": "documemto",
+    "correctCodes": ["TKMNT", "TKMNT"],
+    "variantCodes": ["TKMMT", "TKMMT"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "farmácia",
+    "variant": "farnacia",
+    "correctCodes": ["FRMS", "FRMS"],
+    "variantCodes": ["FRNS", "FRNS"],
+    "reason": "m transcrito como n"
+  },
+  {
+    "correct": "fechado",
+    "variant": "fexado",
+    "correctCodes": ["FXT", "FXT"],
+    "variantCodes": ["FZT", "FST"],
+    "reason": "ch transcrito como x"
+  },
+  {
+    "correct": "filho",
+    "variant": "fio",
+    "correctCodes": ["FL", "FL"],
+    "variantCodes": ["F", "F"],
+    "reason": "perda de lh"
+  },
+  {
+    "correct": "guia",
+    "variant": "gia",
+    "correctCodes": ["K", "K"],
+    "variantCodes": ["J", "J"],
+    "reason": "perda do u em gu"
+  },
+  {
+    "correct": "informação",
+    "variant": "imformacao",
+    "correctCodes": ["ANFRMS", "ANFRMS"],
+    "variantCodes": ["AMFRMK", "AMFRMK"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "internet",
+    "variant": "imternet",
+    "correctCodes": ["ANTRNT", "ANTRNT"],
+    "variantCodes": ["AMTRNT", "AMTRNT"],
+    "reason": "n transcrito como m"
+  },
+  {
+    "correct": "janeiro",
+    "variant": "zaneiro",
+    "correctCodes": ["JNR", "JNR"],
+    "variantCodes": ["ZNR", "ZNR"],
+    "reason": "j transcrito como z"
+  },
+  {
+    "correct": "maçã",
+    "variant": "maca",
+    "correctCodes": ["MS", "MS"],
+    "variantCodes": ["MK", "MK"],
+    "reason": "ç transcrito como c"
+  },
+  {
+    "correct": "número",
+    "variant": "numelo",
+    "correctCodes": ["NMR", "NMR"],
+    "variantCodes": ["NML", "NML"],
+    "reason": "r transcrito como l"
+  },
+  {
+    "correct": "pagamento",
+    "variant": "pajamento",
+    "correctCodes": ["PKMNT", "PKMNT"],
+    "variantCodes": ["PJMNT", "PJMNT"],
+    "reason": "g transcrito como j"
+  },
+  {
+    "correct": "transferência",
+    "variant": "trasferencia",
+    "correctCodes": ["TRNSFRNS", "TRNSFRNS"],
+    "variantCodes": ["TRSFRNS", "TRSFRNS"],
+    "reason": "perda de n"
+  },
+  {
+    "correct": "abacaxi",
+    "variant": "abacasi",
+    "correctCodes": ["APKKS", "APKKS"],
+    "variantCodes": ["APKZ", "APKS"],
+    "reason": "x transcrito como s"
+  },
+  {
+    "correct": "próximo",
+    "variant": "prossimo",
+    "correctCodes": ["PRKSM", "PRKSM"],
+    "variantCodes": ["PRSM", "PRSM"],
+    "reason": "x transcrito como ss"
+  },
+  {
+    "correct": "consulta",
+    "variant": "conzulta",
+    "correctCodes": ["KNSLT", "KNSLT"],
+    "variantCodes": ["KNZLT", "KNZLT"],
+    "reason": "s transcrito como z"
+  },
+  {
+    "correct": "mesmo",
+    "variant": "mezmo",
+    "correctCodes": ["MSM", "MSM"],
+    "variantCodes": ["MZM", "MZM"],
+    "reason": "s transcrito como z"
+  },
+  {
+    "correct": "fixo",
+    "variant": "ficho",
+    "correctCodes": ["FKS", "FKS"],
+    "variantCodes": ["FX", "FX"],
+    "reason": "x transcrito como ch"
+  }
+]
